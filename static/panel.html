@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 14px/1.55 system-ui, sans-serif; margin: 0; padding: 16px; }
+  h1 { font-size: 15px; margin: 0 0 12px; }
+  .card { border: 1px solid #8884; border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+  input { width: 100%; box-sizing: border-box; padding: 8px; border-radius: 6px; border: 1px solid #8886; }
+  button { margin-top: 8px; padding: 7px 12px; border-radius: 6px; border: 0; background: #d97757; color: #fff; cursor: pointer; }
+  button.link { background: none; color: inherit; text-decoration: underline; padding: 0; margin: 0 8px 0 0; }
+  .muted { opacity: .65; font-size: 12px; }
+  pre { background: #8882; padding: 10px; border-radius: 8px; overflow-x: auto; }
+  code { font-family: ui-monospace, monospace; font-size: 13px; }
+  #status.err { color: #c0392b; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+  <h1>Chimbs Plugin</h1>
+
+  <section id="setup" class="card" hidden>
+    <b>Enter your Anthropic API key</b>
+    <p class="muted">Stored locally in this browser profile only (not synced).</p>
+    <input id="key" type="password" placeholder="sk-ant-..." autocomplete="off" />
+    <button id="saveKey">Save key</button>
+  </section>
+
+  <section id="main" hidden>
+    <button id="run">Solve current screen</button>
+    <p class="muted">Or press the shortcut set at chrome://extensions/shortcuts</p>
+    <div id="status" class="muted"></div>
+    <div id="result" class="card" hidden></div>
+    <p><button class="link" id="changeKey">Change API key</button><button class="link" id="clearKey">Remove key</button></p>
+  </section>
+  <script type="module" src="panel.js"></script>
+</body>
+</html>

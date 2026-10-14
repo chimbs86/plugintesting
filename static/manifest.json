@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Chimbs Plugin",
+  "version": "1.1.0",
+  "description": "Side panel assistant: sends the current screen to Claude and shows the answer.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "action": {
+    "default_title": "Open Chimbs Plugin"
+  },
+  "commands": {
+    "solve-screen": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Send this screen to Claude"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://localhost/*",
+        "http://127.0.0.1/*",
+        "http://[::1]/*",
+        "https://localhost/*",
+        "https://127.0.0.1/*"
+      ],
+      "js": [
+        "localhost-guard.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ]
+}
